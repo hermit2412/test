@@ -14,6 +14,8 @@ class ChoiceInline(admin.TabularInline):
     def get_readonly_fields(self,request,obj):
         if obj == None:
             return super(ChoiceInline,self).readonly_fields
+        if obj.state == 'F':
+            self.can_delete = False
         return obj.choice_state_check()
 
 
